@@ -29,14 +29,16 @@ locals {
 
   group_id_map = { for idx, group in tencentcloud_cam_group.groups: local.groups[idx].name => group.id }
 
-  policy_id_map = { for policy in data.tencentcloud_cam_policies.all-policies.policy_list: policy.name => policy.policy_id }
+  policy_id_map = { for policy in data.tencentcloud_cam_policies.all-policies.policy_list: policy.name => policy.policy_id... }
 
   group_policies = flatten([
     for group in local.groups: [
-      for policy_name in group.policy_names: {
-        group_id = local.group_id_map[group.name]
-        policy_id = local.policy_id_map[policy_name]
-      }
+      for policy_name in group.policy_names: [
+        for policy_id in local.policy_id_map[policy_name]: {
+          group_id = local.group_id_map[group.name]
+          policy_id = policy_id
+        }
+      ]
     ]
   ])
 
