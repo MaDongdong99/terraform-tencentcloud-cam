@@ -69,8 +69,7 @@ resource "tencentcloud_cam_group_membership" "user-in-group" {
   depends_on = [tencentcloud_cam_user.users]
   count = length(local.groups)
   group_id   = local.group_id_map[local.groups[count.index].name]
-//  user_names = local.groups[count.index].users
-  user_ids = local.groups[count.index].users
+  user_names = local.groups[count.index].users
 }
 
 resource "tencentcloud_cam_group_policy_attachment" "policies-of-group" {
