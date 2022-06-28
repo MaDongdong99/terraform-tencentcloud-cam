@@ -46,6 +46,7 @@ variable "users" {
     password = optional(string)
     phone_num = optional(string)
     use_api = optional(bool)
+    tags = optional(map(string))
   }))
   default = []
 }

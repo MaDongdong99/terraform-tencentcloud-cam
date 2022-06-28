@@ -15,6 +15,7 @@ locals {
     email = user.email == null ? var.user_default_email: user.email
     country_code = user.country_code == null ? var.user_default_country_code: user.country_code
     force_delete = user.force_delete == null ? var.user_default_force_delete: user.force_delete
+    tags = user.tags == null ? {} : user.tags
     }
   ])
 
@@ -56,6 +57,7 @@ resource "tencentcloud_cam_user" "users" {
   email               = local.users[count.index].email
   country_code        = local.users[count.index].country_code
   force_delete        = local.users[count.index].force_delete
+  tags = local.users[count.index].tags
 
 }
 
