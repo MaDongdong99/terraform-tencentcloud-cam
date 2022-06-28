@@ -1,5 +1,5 @@
 provider "tencentcloud" {
-  domain = "api3.yun.com"
+  domain = "api3.yun.cjccb.com"
   protocol = "HTTP"
   region = "jj"
 }
@@ -16,11 +16,11 @@ module "policies" {
 //    }
 //  ]
 
-  users = [
-    { name = "cam-user-test-aaa", remark = "test", use_api = true, force_delete = true }
-  ]
+//  users = [
+//    { name = "cam-user-test-aaa", remark = "test", use_api = true, force_delete = true }
+//  ]
 }
 
-//output "policies" {
-//  value = module.policies.all-policies
-//}
+output "policies" {
+  value = module.policies.all-policies
+}
